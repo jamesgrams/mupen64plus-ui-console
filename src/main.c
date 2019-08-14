@@ -373,6 +373,7 @@ static void printUsage(const char *progname)
            "    --debug                : launch console-based debugger (requires core lib built for debugging)\n"
            "    --plugindir (dir)      : search for plugins in (dir)\n"
            "    --sshotdir (dir)       : set screenshot directory to (dir)\n"
+	   "    --savedir (dir)        : set save directory to (dir)\n"
            "    --gfx (plugin-spec)    : use gfx plugin given by (plugin-spec)\n"
            "    --audio (plugin-spec)  : use audio plugin given by (plugin-spec)\n"
            "    --input (plugin-spec)  : use input plugin given by (plugin-spec)\n"
@@ -643,6 +644,11 @@ static m64p_error ParseCommandLineMain(int argc, const char **argv)
         else if (strcmp(argv[i], "--sshotdir") == 0 && ArgsLeft >= 1)
         {
             (*ConfigSetParameter)(l_ConfigCore, "ScreenshotPath", M64TYPE_STRING, argv[i+1]);
+            i++;
+        }
+	else if (strcmp(argv[i], "--savedir") == 0 && ArgsLeft >= 1)
+        {
+            (*ConfigSetParameter)(l_ConfigCore, "SaveSRAMPath", M64TYPE_STRING, argv[i+1]);
             i++;
         }
         else if (strcmp(argv[i], "--gfx") == 0 && ArgsLeft >= 1)
